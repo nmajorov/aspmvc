@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
-
+using aspmvc.Models;
 namespace aspmvc.Controllers
 {
     [Route("Hello")]
@@ -19,7 +19,14 @@ namespace aspmvc.Controllers
 
         [Route("blog/{year:int}/{month:int}/{key}")]
         public IActionResult Post(int year,int month,string key){
-            return new ContentResult { Content = string.Format("Year: {0}; Month {1}; Key: {2}",year,month,key)};  
+            var post = new Post{
+                Author ="Nikolaj Majorov",
+                Title ="ASP MVC NET",
+                Posted = DateTime.Now,
+                Body = "this is a great post"
+            };
+            
+            return View(post);
         }
     }
 }
