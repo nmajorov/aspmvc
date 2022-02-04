@@ -13,6 +13,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -20,6 +21,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapRazorPages();
+app.UseEndpoints(endpoints => 
+{
+    endpoints.MapRazorPages();
+    endpoints.MapControllers(); //enable controller mapping
+});
 
 app.Run();
