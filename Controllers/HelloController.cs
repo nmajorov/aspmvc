@@ -28,5 +28,28 @@ namespace aspmvc.Controllers
             
             return View(post);
         }
+
+        [HttpGet,Route("create")]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        
+        [HttpPost,Route("create")]
+        public IActionResult Create(CreatePostRequest postRequest)
+        {
+            var post = new Post();
+            post.Author = User.Identity.Name;
+            post.Posted = DateTime.Now;
+            post.Body = postRequest.Body;
+            post.Title = postRequest.Title;
+            return View();
+        }
+        
+        public class CreatePostRequest
+        {
+            public  string Title { get; set; }
+            public  string Body { get;set; }
+        }
     }
 }

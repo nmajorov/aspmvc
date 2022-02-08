@@ -1,0 +1,26 @@
+@{
+    Layout = "_Layout";
+}
+@using Microsoft.AspNetCore.Razor.TagHelpers
+@model aspmvc.Models.Post
+
+<fieldset>
+    
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(false, "", new { @class = "alert alert-primary"})
+        <p>
+            @Html.LabelFor(x=>x.Title)
+            @Html.ValidationMessageFor(x =>x.Title)
+        </p>
+        <p>
+            @Html.EditorFor(x=>x.Title)
+        </p>
+        <p>@Html.LabelFor(x=> x.Body)</p>
+        @Html.ValidationMessageFor(x =>x.Body)
+        <p>@Html.TextAreaFor(x => x.Body)</p>
+        <p>
+            <button type="submit" class="btn btn-primary">Create Post</button>
+        </p>
+    }
+</fieldset>
