@@ -4,8 +4,14 @@ using aspmvc.Models;
 namespace aspmvc.Controllers
 {
     [Route("Hello")]
-    public class HelloController:Controller 
+    public class HelloController:Controller
     {
+        private readonly BlogDBContext _db;
+
+        public HelloController(BlogDBContext db)
+        {
+            _db = db;
+        }
         [Route("")]
         public IActionResult Index(){
             return new ContentResult {Content ="Hello"};
@@ -43,6 +49,8 @@ namespace aspmvc.Controllers
             post.Posted = DateTime.Now;
             post.Body = postRequest.Body;
             post.Title = postRequest.Title;
+            _db.Posts.Add(post);
+            _db.SaveChanges();
             return View();
         }
         
