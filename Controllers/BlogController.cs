@@ -61,9 +61,12 @@ namespace aspmvc.Controllers
                 post.Title = postRequest.Title;
                 _db.Posts.Add(post);
                 _db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
-            return RedirectToAction("Index");
+            return View();
+
+
         }
 
         public class CreatePostRequest

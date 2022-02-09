@@ -7,8 +7,7 @@
     
     @using (Html.BeginForm())
     {
-        @Html.ValidationSummary(false, "", new { @class = "alert alert-primary"})
-        <p>
+          <p>
             @Html.LabelFor(x=>x.Title)
             @Html.ValidationMessageFor(x =>x.Title)
         </p>
