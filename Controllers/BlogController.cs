@@ -4,12 +4,12 @@ using aspmvc.Models;
 
 namespace aspmvc.Controllers
 {
-    [Route("Hello")]
-    public class HelloController : Controller
+    [Route("Blog")]
+    public class BlogController : Controller
     {
         private readonly BlogDBContext _db;
 
-        public HelloController(BlogDBContext db)
+        public BlogController(BlogDBContext db)
         {
             _db = db;
         }
@@ -17,7 +17,9 @@ namespace aspmvc.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            return new ContentResult {Content = "Hello"};
+            var posts = _db.Posts.OrderByDescending(x => x.Posted).Take(5).ToArray();
+
+            return View(posts);
         }
 
         [Route("Welcome")]
@@ -27,7 +29,7 @@ namespace aspmvc.Controllers
         }
 
 
-        [Route("blog/{year:int}/{month:int}/{key}")]
+        [Route("{year:int}/{month:int}/{key}")]
         public IActionResult Post(int year, int month, string key)
         {
             var post = new Post
@@ -61,7 +63,7 @@ namespace aspmvc.Controllers
                 _db.SaveChanges();
             }
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         public class CreatePostRequest
