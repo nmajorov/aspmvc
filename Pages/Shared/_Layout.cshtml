@@ -31,10 +31,27 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Blog" asp-action="Index">Blog</a>
                         </li>
-                        <li class="nav-item">
-                            <a  class="btn btn-info" asp-controller="Blog" asp-action="Create">Add Blog</a>
+                    <li class="nav-item">
+                        <a  class="btn btn-info" asp-controller="Blog" asp-action="Create">Add Blog</a>
+                    </li>
+                    </ul>
+                        <ul class="navbar-nav  justify-content-end">
+                        <li class="nav-item ">
+                            @if(User.Identity.IsAuthenticated)
+                            {
+                                <form id="logout" action="@Url.Action("Logout", "Account")" method="POST">
+                                    <a href="javascript: $('#logout').submit()" class="last">
+                                        Logout
+                                        <br /><span class="tagline">@User.Identity.Name</span>
+                                    </a>
+                                </form>
+                            } else
+                            {
+                                <a href="@Url.Action("Login", "Account")" tabindex="-1" title="log in" class="last">
+                                    Login
+                                </a>
+                            }
                         </li>
-
                     </ul>
                 </div>
             </div>

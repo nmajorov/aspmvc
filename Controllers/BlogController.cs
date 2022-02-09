@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 using aspmvc.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace aspmvc.Controllers
 {
@@ -49,6 +50,7 @@ namespace aspmvc.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost, Route("create")]
         public IActionResult Create(CreatePostRequest postRequest)
         {

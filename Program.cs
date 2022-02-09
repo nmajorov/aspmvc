@@ -1,6 +1,8 @@
 
 using aspmvc.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,22 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<BlogDBContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDbContext<IdentityDataContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    options.UseNpgsql(connectionString);
+});
+
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<IdentityDataContext>();
+
+//builder.Services.AddDefaultIdentity<IdentityUser>(
+//        options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddRoles<IdentityRole>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
