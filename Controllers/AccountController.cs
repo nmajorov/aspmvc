@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace aspmvc.Controllers
 {
@@ -25,17 +26,22 @@ namespace aspmvc.Controllers
         }
 
         [Route("Login")]
+        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View(new LoginViewModel());
         }
 
+        [Route("Login")]
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel login, string? returnUrl=null)
         {
             if(!ModelState.IsValid)
             {
-                return View();
+                return View(login);
             }
 
             var result = await _signinManager.PasswordSignInAsync(
@@ -46,7 +52,7 @@ namespace aspmvc.Controllers
             if(!result.Succeeded)
             {
                 ModelState.AddModelError("", "Login error!");
-                return View();
+                return View(login);
             }
 
             if (string.IsNullOrWhiteSpace(returnUrl))

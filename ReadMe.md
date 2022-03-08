@@ -27,3 +27,9 @@ to start app
 `
 dotnet run
 `
+
+Github examples:
+
+https://github.com/shahrokh-mi/ASP.NET-MVC-5-Custom-Register-And-Login
+
+
