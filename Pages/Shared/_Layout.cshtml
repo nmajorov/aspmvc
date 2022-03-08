@@ -35,7 +35,7 @@
                         <a  class="btn btn-info" asp-controller="Blog" asp-action="Create">Add Blog</a>
                     </li>
                     </ul>
-                        <ul class="navbar-nav  justify-content-end">
+                    <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item ">
                             @if(User.Identity.IsAuthenticated)
                             {
@@ -47,12 +47,17 @@
                                 </form>
                             } else
                             {
-                                <a href="@Url.Action("Login", "Account")" tabindex="-1" title="log in" class="last">
+                                <a href="@Url.Action("Login", "Account")" tabindex="-1" title="log in" class="nav-link text-dark">
                                     Login
                                 </a>
+                              
                             }
                         </li>
-                    </ul>
+                        <li class="nav-item">
+                          <a href="@Url.Action("Register","Account")" class="btn btn-info">Sign UP, It's Free !</a>
+                        </li>
+                        </ul>
+                    
                 </div>
             </div>
         </nav>

@@ -10,7 +10,7 @@ public class BlogDBContext: DbContext
     {
         Database.EnsureCreated();
     }
-    public Microsoft.EntityFrameworkCore.DbSet<Post> Posts { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<Post>? Posts { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //Changing Database table name to Metadata

@@ -44,6 +44,7 @@ namespace aspmvc.Controllers
             return View(post);
         }
 
+        [Authorize]
         [HttpGet, Route("create")]
         public IActionResult Create()
         {
@@ -57,7 +58,7 @@ namespace aspmvc.Controllers
             if (ModelState.IsValid)
             {
                 var post = new Post();
-                post.Author = User.Identity.Name;
+                post.Author = User.Identity?.Name;
                 post.Posted = DateTime.Now.ToUniversalTime();
                 post.Body = postRequest.Body;
                 post.Title = postRequest.Title;
@@ -73,8 +74,8 @@ namespace aspmvc.Controllers
 
         public class CreatePostRequest
         {
-            public string Title { get; set; }
-            public string Body { get; set; }
+            public string? Title { get; set; }
+            public string? Body { get; set; }
         }
     }
 }

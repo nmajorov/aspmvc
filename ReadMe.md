@@ -21,3 +21,9 @@ Indexes:
     "PK_post" PRIMARY KEY, btree ("Id")
 ```
 
+
+to start app 
+
+`
+dotnet run
+`

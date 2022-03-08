@@ -31,7 +31,7 @@ namespace aspmvc.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel login, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel login, string? returnUrl=null)
         {
             if(!ModelState.IsValid)
             {
@@ -39,7 +39,7 @@ namespace aspmvc.Controllers
             }
 
             var result = await _signinManager.PasswordSignInAsync(
-                login.EmailAddress, login.Password,
+                login.Email, login.PasswordHash,
                 login.RememberMe, false
             );
 
@@ -56,7 +56,7 @@ namespace aspmvc.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Logout(string returnUrl = null)
+        public async Task<IActionResult> Logout(string? returnUrl = null)
         {
             await _signinManager.SignOutAsync();
 
@@ -76,6 +76,8 @@ namespace aspmvc.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registration)
         {
+            Console.Out.WriteLine("enter register");
+            
             if (!ModelState.IsValid)
                 return View(registration);
 
