@@ -2,12 +2,28 @@
 
 Simple app with blogs entry and listings.
 Used just to play with ASP and DOTNET.
+implement database Identity Context using PostgreSQL database.
 
-Using posgresql database.
+
+1. Start database as container from docker folder.
+2. Run migration:
+
+```bash
+#list contexts
+dotnet ef dbcontext list
+
+dotnet ef migrations add InitialCreate  -c aspmvc.Models.BlogDBContext
+
+dotnet ef migrations add IndentityMigration -c aspmvc.Models.IdentityDataContext │
+
+```
+
+
+
 
 Database table crated with Microsoft.EntityFrameworkCore :
 
-```
+```bash
 root=> \dS post
                                      Table "public.post"
  Column |           Type           | Collation | Nullable |             Default              
@@ -22,13 +38,18 @@ Indexes:
 ```
 
 
+
+
 to start app 
 
-`
+```bash
 dotnet run
-`
+```
 
-Github examples:
+
+
+
+interesting Github examples:
 
 https://github.com/shahrokh-mi/ASP.NET-MVC-5-Custom-Register-And-Login
 

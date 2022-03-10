@@ -26,7 +26,7 @@ namespace aspmvc.Controllers
         [Route("Welcome")]
         public IActionResult Welcome()
         {
-            return new ContentResult {Content = "welcome"};
+            return RedirectToPage("/Index");
         }
 
 

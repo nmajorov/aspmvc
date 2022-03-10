@@ -56,7 +56,7 @@ namespace aspmvc.Controllers
             }
 
             if (string.IsNullOrWhiteSpace(returnUrl))
-                return RedirectToPage("Index", "Home");
+                return RedirectToPage("/Index");
 
             return Redirect(returnUrl);
         }
@@ -67,7 +67,7 @@ namespace aspmvc.Controllers
             await _signinManager.SignOutAsync();
 
             if (string.IsNullOrWhiteSpace(returnUrl))
-                return RedirectToPage("Index", "Home");
+                return RedirectToPage("Index");
 
             return Redirect(returnUrl);
         }
