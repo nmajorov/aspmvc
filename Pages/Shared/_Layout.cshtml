@@ -36,26 +36,28 @@
                     </li>
                     </ul>
                     <ul class="navbar-nav  justify-content-end">
-                        <li class="nav-item ">
                             @if(User.Identity.IsAuthenticated)
                             {
+                              <li class="nav-item ">
+                      
                                 <form id="logout" action="@Url.Action("Logout", "Account")" method="POST">
                                     <a href="javascript: $('#logout').submit()" class="last">
                                         Logout
                                         <br /><span class="tagline">@User.Identity.Name</span>
                                     </a>
                                 </form>
+                              </li>
+                      
                             } else
                             {
                                 <a href="@Url.Action("Login", "Account")" tabindex="-1" title="log in" class="nav-link text-dark">
                                     Login
                                 </a>
-                              
+                         
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Register","Account")" class="btn btn-info">Sign UP, It's Free !</a>
+                                </li>
                             }
-                        </li>
-                        <li class="nav-item">
-                          <a href="@Url.Action("Register","Account")" class="btn btn-info">Sign UP, It's Free !</a>
-                        </li>
                         </ul>
                     
                 </div>

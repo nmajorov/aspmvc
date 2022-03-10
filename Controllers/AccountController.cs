@@ -61,13 +61,15 @@ namespace aspmvc.Controllers
             return Redirect(returnUrl);
         }
 
+        
+        [Route("Logout")]
         [HttpPost]
         public async Task<IActionResult> Logout(string? returnUrl = null)
         {
             await _signinManager.SignOutAsync();
 
             if (string.IsNullOrWhiteSpace(returnUrl))
-                return RedirectToPage("Index");
+                return RedirectToPage("/Index");
 
             return Redirect(returnUrl);
         }
