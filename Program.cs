@@ -19,9 +19,12 @@ builder.Services.AddDbContext<IdentityDataContext>(options =>
     options.UseNpgsql(connectionString);
 });
 
-
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<IdentityDataContext>();
+
+
+//builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+//    .AddEntityFrameworkStores<IdentityDataContext>();
 
 //builder.Services.AddDefaultIdentity<IdentityUser>(
 //        options => options.SignIn.RequireConfirmedAccount = true)
@@ -46,6 +49,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
 
 app.UseEndpoints(endpoints => 
 {

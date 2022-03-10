@@ -74,11 +74,13 @@ namespace aspmvc.Controllers
 
 
         [Route("Register")]
+        [HttpGet]
         public IActionResult Register()
         {
             return View(new RegisterViewModel());
         }
 
+        [Route("Register")]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registration)
         {
